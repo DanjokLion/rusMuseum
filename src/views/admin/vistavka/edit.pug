@@ -1,0 +1,48 @@
+extends ../layout
+
+block content
+  .card.shadow.mb-4
+    .card-header.py-3
+      h3 Измененить Выставку
+      
+    .card-body
+      form(action="/admin/vistavka/edit" method="POST" encType="multipart/form-data")
+        .form-group
+          label(for="title") Заголовок 
+          input.form-control#title(type="text" placeholder="Заголовок" name="title" value=data.title required)
+            
+        .form-group
+          label(for="link") Ссылка
+          input.form-control#link(type="text" placeholder="Ссылка" name="link" value=data.link)
+            
+        .form-group
+          label(for="anons") Анонс
+          textarea.form-control#anons(rows="3" name="anons" required)=data.anons
+          
+        .form-group
+          label(for="editor") Основное описание
+          textarea.form-control#editor(rows="3" name="content" required)=data.content
+        if data.img !=null
+          img(width='150px' src='/uploads/vistavka/' + data.img)      
+        else
+          img(width='150px' src='/images/noimage.png')
+        .form-group
+          label(for="img") Превью
+          input.form-control#img(type="file" name="img")
+            
+        .form-group
+          label(for="meta_keywords") Ключевые слова
+          input.form-control#meta_keywords(type="text" name="meta_keywords" value=data.meta_keyword)
+            
+        .form-group
+          label(for="meta_description") Ключевое описание
+          textarea.form-control#meta_description(rows="3" name="meta_description")=data.meta_description
+            
+        input(type="hidden" name="id" value=data.id)
+          
+        input(type="hidden" name="userId" value=currentUser.id)
+        
+        input(type="hidden" name="old" value=data.link)
+            
+            
+        button.btn.btn-primary(type="submit") Сохранить

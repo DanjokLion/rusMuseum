@@ -1,0 +1,71 @@
+doctype html
+html(lang='ru')
+  head
+    title Административная панель
+    meta(charset="utf-8")
+    meta(name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no")
+      
+    link(rel="shortcut icon" href="/favicon.ico" type="image/x-icon")
+    link(rel="stylesheet" href="/css/admin.css")
+    link(rel="stylesheet" href="/css/bootstrap.min.css")
+    link(rel="stylesheet" href="/css/all.css" )
+    link(rel="stylesheet" href="/css/sb-admin-2.min.css" )
+    link(rel="stylesheet" href="/css/froala_editor.pkgd.min.css"  type="text/css" )  
+    link(href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet")
+  
+    
+
+  body#page-top
+    #wrapper
+      include sidebar
+      #content-wrapper.d-flex.flex-column
+        #content
+          include topbar
+          .container-fluid
+            block content
+        include footer
+
+    script(src="/js/jquery-3.6.0.min.js")
+    script(src="/vendor/bootstrap/js/bootstrap.bundle.min.js")
+    script(src="/vendor/jquery-easing/jquery.easing.min.js")
+    script(src="/vendor/datatables/jquery.dataTables.js")
+    script(src="/vendor/datatables/dataTables.bootstrap4.min.js")
+    
+    script(src="/js/sb-admin-2.min.js")
+    script(src="/js/froala_editor.pkgd.min.js")
+    script(src="/js/datatable.js")
+    script(src="/js/filesManager.js")
+    
+    script.
+      new FroalaEditor('#editor');
+
+      $( ".zoom-img" ).click(function() {
+        $( ".zoom-block .big-image" ).attr("src",$( this ).data('img'));
+        $( ".zoom-block" ).removeClass('off');
+      });
+
+      $( ".zoom-block" ).click(function() {
+        $( ".zoom-block" ).addClass('off');
+      });
+      
+      $( ".delete" ).click(function() {
+        $( ".del-id" ).val( $( this ).data( "id" ) )
+        $( ".modale-body form").attr( "action", $( this ).data( "action" ) )
+        $( ".delete-modale" ).show();
+        $( ".blackout" ).show();
+      });
+      
+      $( ".blackout" ).click(function() {
+        $( ".delete-modale" ).hide();
+        $( ".blackout" ).hide();
+      });
+      
+      $( "#close" ).click(function() {
+        $( ".delete-modale" ).hide();
+        $( ".blackout" ).hide();
+      });
+      
+      $( ".no" ).click(function() {
+        $( ".delete-modale" ).hide();
+        $( ".blackout" ).hide();
+      });

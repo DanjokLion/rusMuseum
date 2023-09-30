@@ -1,0 +1,17 @@
+footer.sticky-footer.bg-white
+  .container.my-auto
+    .copyright.text-center.my-auto
+      span Copyright &copy; Your Website 2020
+.delete-modale
+  .modale-head
+    i#close.fas.fa-times
+  .modale-body
+    p Вы действительно ходите это удалить?
+    form(action="/wams" method="POST" accept-charset="utf-8")
+      input.del-id(type="hidden" name="id" value="1")
+      .row 
+        .col-6     
+          input.btn.btn-light.btn-block.btn-flat.submit(type="submit" name="yes" value="Да")
+        .col-6
+          span.btn.btn-primary.btn-block.btn-flat.submit.no Нет
+.blackout

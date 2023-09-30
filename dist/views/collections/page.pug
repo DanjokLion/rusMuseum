@@ -1,0 +1,20 @@
+extends ../layout
+
+block content
+  h2.col-12.text-center.mt-5.mb-5.pt-5=collection.title
+  .container.min-h
+    .row
+      if data != []
+        for item in data
+          .col-12.col-sm-3.col-md-3.col-lg-2.col-xl-2.gallery-item
+            .gallery-item-bg(style="background-image: url('/uploads/collections/"+ collection.link + "/thumbnail/" + item.thumbnail +"')" data-img="/uploads/collections/" +collection.link + "/" + item.img alt="")
+      else
+        h2.col-12.text-center Коллекций нет
+  .blackout
+  .gallery-zoom
+    img#gallery-zoom-img(src="/images/noimage.png" alt="")
+  .col-12.text-center
+   a.btn.btn-col.mt-3.mb-5(href="/collections" class="") Назад
+        
+   
+   

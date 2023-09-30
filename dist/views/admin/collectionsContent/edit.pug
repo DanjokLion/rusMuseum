@@ -1,0 +1,37 @@
+extends ../layout
+
+block content
+  .card.shadow.mb-4
+    .card-header.py-3
+      h3 Измененить контент коллекций
+      
+    .card-body
+      form(action="/admin/collectionsContent/edit" method="POST" encType="multipart/form-data")
+        .form-group
+          label(for="collections") Коллекции
+          select.form-control(name="collectionId")
+            for item in collections 
+              option(value=item.id)=item.title
+              
+        if data.thumbnail != null
+          img(width='150px' src='/uploads/collections/'+ data['collection.link'] + '/thumbnail/' + data.thumbnail)
+        else 
+          img(width='150px;' src='/images/noimage.png')
+        .form-group
+          label(for="thumbnail") Превью
+          input.form-control#thumbnail(type="file" name="thumbnail")
+            
+        if data.img !=null
+          img(width='150px' src='/uploads/collections/'+ data['collection.link'] + '/' + data.img)
+        else
+          img(width='150px;' src='/images/noimage.png')
+        .form-group
+          label(for="img") Изображения
+          input.form-control#img(type="file" name="img")
+            
+        input(type="hidden" name="id" value=data.id)
+        
+        input(type="hidden" name="userId" value=currentUser.id)
+        
+            
+        button.btn.btn-primary(type="submit") Сохранить

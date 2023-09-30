@@ -1,0 +1,21 @@
+extends ../layout
+
+block content
+  h2.col-12.text-center.mt-5.mb-5.pt-5=vistavka.title
+  .container.min-h
+    .row
+      .col-12.mb-4!= vistavka.content
+      if data != []
+        for item in data
+          .col-12.col-sm-3.col-md-3.col-lg-2.col-xl-2.gallery-item
+            .gallery-item-bg(style="background-image: url('/uploads/vistavka/"+ vistavka.link + "/thumbnail/" + item.thumbnail +"')" data-img="/uploads/vistavka/" +vistavka.link + "/" + item.img alt="")
+      else
+        h2.col-12.text-center Выставок нет
+  .blackout
+  .gallery-zoom
+    img#gallery-zoom-img(src="/images/noimage.png" alt="")
+  .col-12.text-center
+   a.a.btn.btn-col.mt-3.mb-5(href="/vistavka" class="") Назад
+        
+   
+   

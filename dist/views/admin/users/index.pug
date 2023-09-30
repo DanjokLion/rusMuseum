@@ -1,0 +1,38 @@
+extends ../layout
+
+block content
+  h1.h3.mb-2.text-gray-800 Пользователи
+
+  .card.shadow.mb-4
+    .card-header.py-3
+      a.btn.btn-primary.submit(href="/admin/users/add") Добавить
+
+    .card-body
+      .table-responsive
+        table.table.table-bordered#dataTable(width="100%" cellspacing="0")
+          thead
+            tr
+              th Имя
+              th E-mail
+              th Управление
+          tfoot
+            tr
+              th Имя
+              th E-mail
+              th Управление
+          tbody
+            if data != null
+              for item in data
+                tr
+                  td 
+                    a(href="/admin/users/edit/"+ item.id)= item.name
+                  td= item[ 'user.name' ]
+                  td= item.email
+                  td 
+                    a(href="/admin/users/edit/"+ item.id)
+                      i.fas.fa-pencil-alt &nbsp;
+                    i.fas.fa-trash-alt
+              else
+                tr
+                  td 
+                    p Данные отсутствуют

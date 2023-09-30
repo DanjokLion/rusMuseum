@@ -1,0 +1,50 @@
+.header
+  .container
+    .row
+      .col-2
+        a.navbar-brand.text-center(href="/")
+          img.logo(src="/images/logo.png" alt="")
+      .col-8.musname
+        h1.text-center РУССКИЙ МУЗЕЙ <br> СТАРООСКОЛЬСКОГО ПЕДАГОГИЧЕСКОГО КОЛЛЕДЖА
+      .col-2.text-center
+          img.colleg(src="/images/colleg.jpg" alt="")
+  nav.navbar.navbar-expand-lg
+    .container
+      button.navbar-toggler(type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation")
+        span.navbar-toggler-icon ☰
+      .collapse.navbar-collapse#navbarSupportedContent
+        ul.navbar-nav.me-auto.mb-2.mb-lg-0
+          li.nav-item
+            a.nav-link(href="/") Главная
+          li.nav-item
+            a.nav-link(href="/visitors") Посетителям
+          li.nav-item.dropdown
+            a.nav-link.dropdown-toggle#navbarDropdown(href="#"  role="button" data-bs-toggle="dropdown" aria-expanded="false") Коллекции
+            ul.dropdown-menu(aria-labelledby="navbarDropdown")
+              li
+                a.dropdown-item(href="/collections") Коллекции
+              hr.featurette-divider
+              if collections != null
+                for item in collections
+                  li
+                    a.dropdown-item(href="/collections/"+item.link )= item.title
+              else 
+                span
+              
+          li.nav-item.dropdown
+            a.nav-link.dropdown-toggle#navbarDropdown(href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false") Выставки
+            ul.dropdown-menu(aria-labelledby="navbarDropdown")
+              li
+                a.dropdown-item(href="/vistavka") Выcтавки
+              hr.featurette-divider
+              if vistavki != null
+                for item in vistavki
+                  li
+                    a.dropdown-item(href="/vistavka/"+item.link )= item.title
+              else 
+                span
+                
+          li.nav-item
+            a.nav-link(href="/excursionvis") Экскурсия
+          li.nav-item
+            a.nav-link(href="/news") Новости. Афиша

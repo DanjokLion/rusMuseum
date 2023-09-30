@@ -1,0 +1,56 @@
+extends layout
+
+block content
+  h1.h3.mb-2.text-gray-800 Файловый менеджер
+
+  .card.shadow.mb-4
+    .card-header.py-3
+      .path 
+        span /
+      form#upload-image-form( data-path="/" encType="multipart/form-data") 
+        input#img(type="file" name="img")
+        input#path(type='hidden' name='path' value='')
+        button.btn.btn-primary( onclick="upload()" ) Загрузить
+    .card-body
+      .files-manager-block
+        if folders != null
+          for item in folders
+            .files-manager-item( id=item onclick="selectItem('" + item + "')" )
+              img(src='/images/folder.png' ondblclick="getItem('/"+ item +"')")
+              p.text-center=item
+        if files != null
+          for item in files
+            .files-manager-item( id=item.replace(/[^_a-zA-Z0-9-]*/g, '') onclick="selectItem('" + item.replace(/[^_a-zA-Z0-9-]*/g, '') + "')" )
+              img(src='/images/file.png' ondblclick="showImg( '/" + item + "' )")
+              i.fas.fa-trash.fm-del( onclick="showDeleteModal( '/" + item + "',  '/' )" )
+              i.fas.fa-pen.fm-rename( onclick="showRenameModal( '" + item + "',  '/' )" )
+              p.text-center=item
+  .zoom-block.off
+    .big-image(style='')
+  .fm-delete-modale
+    .modale-head
+      i#fm-icon-close.fas.fa-times( onclick="closeFMModale()" )
+    .modale-body
+      p Вы действительно ходите это удалить?
+      .row 
+        input.del-file(type="hidden" name="file" value="1")
+        input.del-path(type="hidden" name="path" value="1")
+        .col-6     
+          button.btn.btn-danger.btn-block.btn-flat( onclick="delItem()" ) Да
+        .col-6
+          button.btn.btn-light.btn-block.btn-flat.no( onclick="closeFMModale()" ) Нет
+  .fm-rename-modale
+    .modale-head
+      span Переименовать
+      i#fm-icon-close.fas.fa-times( onclick="closeRenameModale()" )
+    .modale-body
+      .row 
+        input.rename-file(type="text" name="file" value="1")
+        input.rename-old(type="hidden" name="old" value="1")
+        input.rename-path(type="hidden" name="path" value="1")
+        .col-6     
+          button.btn.btn-danger.btn-block.btn-flat( onclick="renameItem()" ) Да
+        .col-6
+          button.btn.btn-light.btn-block.btn-flat.no( onclick="closeRenameModale()" ) Нет
+  .fm-blackout
+  

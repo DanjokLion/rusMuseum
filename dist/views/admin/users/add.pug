@@ -1,0 +1,24 @@
+extends ../layout
+
+block content
+  .card.shadow.mb-4
+    .card-header.py-3
+      h3 Добавить пользователя
+      
+    .card-body
+      form(action="/admin/users/add" method="POST" encType="multipart/form-data")
+        .form-group
+          label(for="name") Имя
+          input.form-control#name(type="name" placeholder="Имя" name="name" required)
+            
+        .form-group
+          label(for="email") E-mail
+          input.form-control#email(type="email" placeholder="E-mail" name="email" required)
+            
+        .form-group
+          label(for="pass") Пароль
+          input.form-control#pass(type="password" placeholder="Пароль" name="pass" required)
+            
+        input(type="hidden" name="userId" value=currentUser.id)
+            
+        button.btn.btn-primary(type="submit") Сохранить

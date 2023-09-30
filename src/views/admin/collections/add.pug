@@ -1,0 +1,29 @@
+extends ../layout
+
+block content
+  .card.shadow.mb-4
+    .card-header.py-3
+      h3 Добавить Коллекцию
+      
+    .card-body
+      form(action="/admin/collections/add" method="POST" encType="multipart/form-data")
+        .form-group
+          label(for="title") Заголовок
+          input.form-control#title(type="text" placeholder="Заголовок" name="title" required)
+            
+        .form-group
+          label(for="thumbnail") Превью
+          input.form-control#thumbnail(type="file" name="thumbnail")
+            
+        .form-group
+          label(for="meta_keywords") Ключевые слова
+          input.form-control#meta_keywords(type="text" name="meta_keywords")
+            
+        .form-group
+          label(for="meta_description") Ключевое описание
+          textarea.form-control#meta_description(rows="3" name="meta_description")
+        
+        input(type="hidden" name="userId" value=currentUser.id)
+            
+            
+        button.btn.btn-primary(type="submit") Сохранить

@@ -1,0 +1,46 @@
+extends ../layout
+
+block content
+  h1.h3.mb-2.text-gray-800 Выставки
+
+  .card.shadow.mb-4
+    .card-header.py-3
+      a.btn.btn-primary.submit(href="/admin/vistavka/add") Добавить
+
+    .card-body
+      .table-responsive
+        table.table.table-bordered#dataTable(width="100%" cellspacing="0")
+          thead
+            tr
+              th Заголовок
+              th Автор
+              th Дата редактирования
+              th Управление
+          tfoot
+            tr
+              th Заголовок
+              th Автор
+              th Дата редактирования
+              th Управление
+          tbody
+            if data != null
+              for item in data
+                tr
+                  td(width='150px')
+                    a
+                      if item.img != null
+                        img(width='100%' src='/uploads/vistavka/' + item.img)
+                      else
+                        img(width='100%' src='/images/noimage.png')
+                  td
+                    a(href="/admin/vistavka/edit/"+ item.id)= item.title
+                  td= item[ 'user.name' ]
+                  td= item.createdAt != null ? item.createdAt : "O_o"
+                  td 
+                    a(href="/admin/vistavka/edit/"+ item.id)
+                      i.fas.fa-pencil-alt &nbsp;
+                    i.fas.fa-trash-alt.delete(data-id=item.id data-action="/admin/vistavka/delete")
+              else
+                tr
+                  td 
+                    p Данные отсутствуют

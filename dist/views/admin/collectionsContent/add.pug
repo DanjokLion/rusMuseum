@@ -1,0 +1,28 @@
+extends ../layout
+
+block content
+  .card.shadow.mb-4
+    .card-header.py-3
+      h3 Добавить контент коллекций
+      
+    .card-body
+      form(action="/admin/collectionsContent/add" method="POST" encType="multipart/form-data")
+        .form-group
+          label(for="collections") Коллекции
+          select.form-control(name="collectionId")
+            option( ) Выберите коллекцию
+            for item in collections 
+              option(value=item.id)=item.title
+            
+        .form-group
+          label(for="thumbnail") Превью
+          input.form-control#thumbnail(type="file" name="thumbnail")
+          
+        .form-group
+          label(for="img") Изображения
+          input.form-control#img(type="file" name="img")
+          
+        input(type="hidden" name="userId" value=currentUser.id)
+            
+            
+        button.btn.btn-primary(type="submit") Сохранить

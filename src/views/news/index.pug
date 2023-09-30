@@ -1,0 +1,22 @@
+extends ../layout
+
+block content
+    h2.col-12.text-center.mt-5.mb-4.pt-5 Новости. Афиша
+    .container.min-h
+      .row
+        if news != null
+          for item in news
+            .col-6
+              a.news-title-link(href="/news/"+item.link) 
+                h3=item.title
+              br
+              a.news-img(href="/news/"+item.link style="background-image: url('/uploads/news/"+ ( item.img != undefined ? item.img : "noimage.png" ) + "')")
+              br
+              p 
+                span=item.type
+                
+                span=item.createAt
+              p=item.anons 
+              a.btn.btn-primary.mb-4(href="/news/"+item.link) Перейти
+        else
+          h2.col-12.text-center Новостей нет

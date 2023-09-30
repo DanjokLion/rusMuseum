@@ -1,0 +1,39 @@
+extends ../layout
+
+block content
+  .card.shadow.mb-4
+    .card-header.py-3
+      h3 Добавить выставку
+      
+    .card-body
+      form(action="/admin/vistavka/add" method="POST" encType="multipart/form-data")
+        .form-group
+          label(for="title") Заголовок
+          input.form-control#title(type="text" placeholder="Заголовок" name="title" required)
+            
+        .form-group
+          label(for="anons") Анонс
+          textarea.form-control#anons(rows="3" name="anons" required) 
+          
+        .form-group
+          label(for="editor") Основное описание
+          textarea.form-control#editor(rows="3" name="content" required)
+            
+        .form-group
+          label(for="img") Превью
+          input.form-control#img(type="file" name="img")
+            
+        .form-group
+          label(for="meta_keywords") Ключевые слова
+          input.form-control#meta_keywords(type="text" name="meta_keywords")
+            
+        .form-group
+          label(for="meta_description") Ключевое описание
+          textarea.form-control#meta_description(rows="3" name="meta_description")
+            
+        input(type="hidden" name="userId" value=currentUser.id)
+        
+        
+            
+            
+        button.btn.btn-primary(type="submit") Сохранить

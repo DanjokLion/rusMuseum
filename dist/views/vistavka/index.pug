@@ -1,0 +1,19 @@
+extends ../layout
+
+block content
+    h2.col-12.text-center.mt-5.mb-4.pt-5 Выставки
+    .container.min-h
+      .row
+        if vistavka != null
+          for item in vistavka
+            .col-6
+              a.news-title-link(href="/vistavka/"+item.link) 
+                h3=item.title
+              br
+              a.news-img(href="/vistavka/"+item.link style="background-image: url('/uploads/vistavka/"+ ( item.img != null ? item.img : "noimage.png" ) + "')")
+              br 
+              p=item.anons 
+              a.btn.btn-primary.mb-4(href="/vistavka/"+item.link) Перейти
+              
+        else
+          h2.col-12.text-center Выставок нет

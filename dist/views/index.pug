@@ -1,0 +1,11 @@
+extends layout
+
+block content
+  .bg-main.pb-4
+    .container.min-h
+      .row
+        .col-12.d-flex.justify-content-center.pt-5
+          .main-video
+            iframe.video(src="https://www.youtube.com/embed/ZOVs-luAsuY" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen)
+        .col-12.text-center.pt-2
+          a.btn.btn-main(href="/collections") Перейти к коллекциям
